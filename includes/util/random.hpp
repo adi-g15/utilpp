@@ -34,8 +34,8 @@ namespace util{
             return static_cast<T>((num%(max-min)) + min );
         }
 
-        inline static std::random_device device;
-        inline static std::mt19937 generator{ device() };
-
+        // static inline std::random_device device;
+        // static inline std::mt19937 generator{ device() };
+        static inline std::mt19937 generator;
     };
 }
