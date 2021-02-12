@@ -36,6 +36,7 @@ namespace util{
 
         // static inline std::random_device device;
         // static inline std::mt19937 generator{ device() };
-        static inline std::mt19937 generator;
+        // static inline std::mt19937 generator;    // these are absolutely fine with C++17, but github action using gcc 7.4 points out as error
+        static std::mt19937 generator;
     };
 }
