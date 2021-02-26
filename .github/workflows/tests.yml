@@ -1,0 +1,34 @@
+name: Tests
+
+jobs:
+  tests-ubuntu:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Configure
+      working-directory: ${github.workspace}/tests
+      run: cmake -E make_directory build && cd build && cmake ..
+
+    - name: Build Tests
+      working-directory: ${github.workspace}/tests/build
+      run: cmake --build .
+      
+    - name: Run Test
+      working-directory: ${github.workspace}/tests/build
+      run: ./tests
+
+  tests-window:
+    runs-on: window-latest
+
+    steps:
+    - name: Configure
+      working-directory: ${github.workspace}/tests
+      run: cmake -E make_directory build && cd build && cmake ..
+
+    - name: Build Tests
+      working-directory: ${github.workspace}/tests/build
+      run: cmake --build .
+
+    - name: Run Test
+      working-directory: ${github.workspace}/tests/build
+      run: ./tests
