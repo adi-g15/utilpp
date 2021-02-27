@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>  //for tokenizer
 #include <algorithm>
+#include <string_view>
 
 #define stringify(name) #name
 
@@ -18,6 +19,7 @@ namespace util
     std::string strip_copy(const std::string &, char toRemove); /*Returns a string without the passed character*/
     bool icompare(const std::string &s1, const std::string &s2) noexcept;
 
+    bool starts_with(const std::string& s, std::string_view start_str);
     std::vector< std::string > tokenizeIt(const std::string& dir, char sep);
 	std::vector<std::string> split(const std::string& s, char delim = ','); //similar to tokenizeIt(), but this is meant to consider double quotes too
 
@@ -106,7 +108,11 @@ bool util::icompare(const std::string &s1, const std::string &s2) noexcept
     return true;
 }
 
-std::vector< std::string > tokenizeIt(const std::string& str, char sep){
+bool util::starts_with(const std::string& s, std::string_view start_str) {
+    return s.find(start_str.data()) == 0;
+}
+
+std::vector< std::string > util::tokenizeIt(const std::string& str, char sep){
     std::istringstream stream(str);
     std::vector< std::string > tokens;
     std::string token;
