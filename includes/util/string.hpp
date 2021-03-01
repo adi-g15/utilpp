@@ -26,7 +26,7 @@ namespace util
 } // namespace util
 
     //DEFINITIONS
-void util::trim(std::string &s)
+inline void util::trim(std::string &s)
 {
     auto i = s.end() - 1;
     for (; i != s.begin(); --i)
@@ -54,14 +54,14 @@ void util::trim(std::string &s)
     // s.erase(std::find_if(s.rbegin(), s.rend(), isspace).base(), s.end());
 }
 
-std::string util::trim_copy(const std::string &s)
+inline std::string util::trim_copy(const std::string &s)
 {
     std::string str_out(s);
     util::trim(str_out);
     return str_out;
 }
 
-void util::trimChar(std::string &s, char ch){
+inline void util::trimChar(std::string &s, char ch){
     while (s.back() == ch)
     {
         s.pop_back();
@@ -71,7 +71,7 @@ void util::trimChar(std::string &s, char ch){
     }
 }
 
-void util::replace_all(std::string& s, const std::string& _old, const std::string& _new){
+inline void util::replace_all(std::string& s, const std::string& _old, const std::string& _new){
         //replace all occurences of `old` with `new` in str
     size_t start = s.find(_old);
 
@@ -83,14 +83,14 @@ void util::replace_all(std::string& s, const std::string& _old, const std::strin
 }
 
 
-void util::strip(std::string &s, char toRemove)
+inline void util::strip(std::string &s, char toRemove)
 {
     s.erase(
         std::remove(s.begin(), s.end(), toRemove),
         s.end());
 }
 
-std::string util::strip_copy(const std::string &s, char toRemove)
+inline std::string util::strip_copy(const std::string &s, char toRemove)
 {
     std::string str_out(s);
     util::strip(str_out, toRemove);
@@ -98,7 +98,7 @@ std::string util::strip_copy(const std::string &s, char toRemove)
     return str_out;
 }
 
-bool util::icompare(const std::string &s1, const std::string &s2) noexcept
+inline bool util::icompare(const std::string &s1, const std::string &s2) noexcept
 {
     for (size_t i = 0; i < s1.size(); ++i)
     {
@@ -108,11 +108,11 @@ bool util::icompare(const std::string &s1, const std::string &s2) noexcept
     return true;
 }
 
-bool util::starts_with(const std::string& s, std::string_view start_str) {
+inline bool util::starts_with(const std::string& s, std::string_view start_str) {
     return s.find(start_str.data()) == 0;
 }
 
-std::vector< std::string > util::tokenizeIt(const std::string& str, char sep){
+inline std::vector< std::string > util::tokenizeIt(const std::string& str, char sep){
     std::istringstream stream(str);
     std::vector< std::string > tokens;
     std::string token;
@@ -133,7 +133,7 @@ std::vector< std::string > util::tokenizeIt(const std::string& str, char sep){
 }
 
     //@todo - Debug it
-auto util::split(const std::string &s, char delim) -> std::vector<std::string>{
+inline auto util::split(const std::string &s, char delim) -> std::vector<std::string>{
 
 	std::vector<std::string> retVec;
 
