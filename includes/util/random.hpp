@@ -6,6 +6,16 @@
 namespace util{
     class Random{   //gives out non-zero values only
     public:
+        template<typename IntegerType = int>
+        static std::vector<IntegerType> random_range(size_t length) {
+            static_assert(std::is_integral_v<IntegerType>);
+
+            std::vector<IntegerType> arr(length);
+            std::generate(arr.begin(), arr.end(), Random::generator);
+
+            return arr;
+        }
+
         template<typename T = uint32_t> // so that, if signed BUT positive integer type is required, it can be given (it required narrowing conversions)
         static T random(){
             static_assert(std::is_integral_v<T>);
