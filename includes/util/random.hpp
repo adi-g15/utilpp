@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <random>
+#include <algorithm>
 
 namespace util{
     class Random{   //gives out non-zero values only
