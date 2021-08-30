@@ -1,12 +1,25 @@
 #pragma once
 
+#include <cstddef>
+#include <cstdint>
 #include <limits>
 #include <random>
 #include <algorithm>
+#include <vector>
 
 namespace util{
     class Random{   //gives out non-zero values only
     public:
+	static std::vector<uint32_t> random_bytes(size_t length) {
+		std::vector<uint32_t> bytes(length);
+		std::random_device device;
+		for(auto &b: bytes) {
+			b = device();
+		}
+
+		return bytes;
+	}
+
         template<typename IntegerType = int>
         static std::vector<IntegerType> random_range(size_t length) {
             static_assert(std::is_integral_v<IntegerType>);
